@@ -70,6 +70,11 @@ bash load.sh
 
 ### 4. Start Ollama LLM Server
 
+```bash
+ollama pull llama2
+ollama run llama2
+```
+
 Make sure Ollama is running and accessible at `http://localhost:11434`.
 
 ### 5. Run the Streamlit App
