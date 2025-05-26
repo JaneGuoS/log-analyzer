@@ -94,9 +94,4 @@ streamlit run main.py
 - Check that environment variables are set correctly.
 - If you see import errors, run the app from the project root directory.
 
-## License
-MIT License
-
----
-
 **Enjoy analyzing your logs with AI!**
