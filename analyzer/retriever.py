@@ -30,16 +30,16 @@ def get_chat_engine(collection_name,index_name,model):
                                index_name           = index_name,
                                vector_index_name   = index_name)
   store_index          = VectorStoreIndex.from_vector_store(vector_store=vector_store, embed_model=EMBEDDINGS)
-  index_retriever      = VectorIndexRetriever(index=store_index,similarity_top_k=4)
+  index_retriever      = VectorIndexRetriever(index=store_index,similarity_top_k=1)
   response_synthesizer = get_response_synthesizer(llm=llm_model)
   query_engine         = RetrieverQueryEngine(
                                retriever            = index_retriever,
                                response_synthesizer = response_synthesizer)
-                              #  node_postprocessors  = [SimilarityPostprocessor(similarity_cutoff=0.7)])
+                               # node_postprocessors  = [SimilarityPostprocessor(similarity_cutoff=0.7)])
   chat_engine          = CondenseQuestionChatEngine.from_defaults(
                                query_engine         = query_engine,
                                llm                  = llm_model,
-                               verbose=True)
+                               verbose=False)
   return chat_engine
   
 def default_llm(model):

@@ -2,6 +2,7 @@ from jsonschema import ValidationError
 from analyzer import retriever
 from llama_index.core.llms import ChatMessage,MessageRole
 
+history = [ ChatMessage(role=MessageRole.USER,content="") ]
 
 def get_stream_response(query_string, model):
     # If query_string is a list (e.g., [ChatMessage]), extract the content string
@@ -10,11 +11,15 @@ def get_stream_response(query_string, model):
     else:
         query_str = query_string
 
-    chat_message = [ ChatMessage(role=MessageRole.USER,content=query_string) ]
+    print(f"[DEBUG] before getting the chat engine")
     chat_engine = retriever.get_chat_engine('logs_collection','default',model)
+    print(f"[DEBUG] after getting the chat engine")
 
     try:
-        result = chat_engine.chat(query_string, chat_history=chat_message)   
+        result = chat_engine.chat(query_string, chat_history=history)   
+        if history.__len__() > 20:
+            history.clear()
+        history.append(ChatMessage(role=MessageRole.USER, content=result.response))
         return result.response
     except ValidationError as e:
         print(f"[DEBUG] Validation Error: {e}")

@@ -26,7 +26,7 @@ def main():
             result_placeholder = st.empty()
             result_placeholder.write("🧑‍💻 Analyzing...")
 
-            result = log_analyzer.chat_with_llm(userPrompt, [], 'llama2')
+            result = log_analyzer.chat_with_llm(userPrompt, [], 'llama3.2')
             result_placeholder.write(result)
 
     except Exception as e:
