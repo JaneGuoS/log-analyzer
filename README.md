@@ -59,7 +59,7 @@ export MONGODB_DBNAME="logdb"
 
 ### 3. Load Log Data
 
-Place your log CSV files in `store/backup/` or `store/logs/`.
+Place your log CSV files in `store/logs/`.
 
 Run the data pipeline to ingest and vectorize logs:
 
